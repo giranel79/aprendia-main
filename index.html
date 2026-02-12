@@ -72,6 +72,44 @@
             font-variant-numeric: tabular-nums;
             font-family: 'JetBrains Mono', monospace;
         }
+
+        /* --- MEJORA DEL BOTÓN --- */
+        @keyframes scan-line {
+            0% { transform: translateX(-100%) skewX(-15deg); }
+            100% { transform: translateX(300%) skewX(-15deg); }
+        }
+        @keyframes pulse-cyan {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 242, 255, 0.4); }
+            50% { box-shadow: 0 0 45px rgba(0, 242, 255, 0.7); }
+        }
+        .btn-cyber-ultimate {
+            position: relative;
+            overflow: hidden;
+            background: #00F2FF;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: pulse-cyan 3s infinite ease-in-out;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        .btn-cyber-ultimate:hover {
+            background: #ffffff;
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 0 60px rgba(0, 242, 255, 0.8);
+        }
+        .btn-cyber-ultimate .scanner {
+            position: absolute;
+            top: 0; left: 0; width: 40%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.9), transparent);
+            animation: scan-line 2.5s infinite linear;
+        }
+        .aura-btn {
+            position: absolute;
+            inset: -5px;
+            background: #00F2FF;
+            filter: blur(25px);
+            opacity: 0.15;
+            z-index: -1;
+            border-radius: 12px;
+        }
     </style>
 </head>
 <body>
@@ -164,26 +202,29 @@
 
             </div>
             
+            <!-- BOTÓN MEJORADO (SOLO CAMBIO AQUÍ) -->
             <div class="flex flex-col md:flex-row gap-6 justify-center items-center">
-                <a href="registro.html" class="px-12 py-6 bg-[#00F2FF] text-black font-black font-orbitron text-xl hover:bg-white transition shadow-[0_0_40px_rgba(0,242,255,0.4)] transform hover:scale-105 rounded-lg flex items-center gap-3">
-                    <i data-lucide="crosshair"></i> SOLICITAR AUDITORÍA DE ACCESO
-                </a>
+                <div class="relative group">
+                    <div class="aura-btn"></div>
+                    <a href="registro.html" class="btn-cyber-ultimate px-12 py-7 text-black font-black font-orbitron text-xl md:text-2xl rounded-xl flex items-center justify-center gap-4 group">
+                        <div class="scanner"></div>
+                        <i data-lucide="crosshair" class="w-8 h-8 md:w-9 md:h-9 group-hover:rotate-90 transition-transform duration-500"></i>
+                        <span>SOLICITAR AUDITORÍA DE ACCESO</span>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- BIO / AUTORIDAD (ACTUALIZADA CON TU FOTO GIRANEL1.PNG) -->
+    <!-- BIO / AUTORIDAD -->
     <section id="bio" class="py-20 bg-[#080808] border-t border-gray-900">
         <div class="max-w-5xl mx-auto px-6">
             <div class="flex flex-col md:flex-row gap-12 items-center">
                 <div class="w-full md:w-5/12 text-center">
                     <div class="relative inline-block">
-                        <!-- Glow para tu foto -->
                         <div class="absolute -inset-1 bg-gradient-to-tr from-[#00F2FF] to-[#FFCC00] rounded-2xl blur-lg opacity-30 animate-pulse"></div>
-                        <!-- Tu Foto de Comandante -->
                         <img src="giranel1.png" class="relative z-10 w-full max-w-[320px] aspect-[4/5] rounded-xl border-2 border-[#00F2FF]/50 object-cover mx-auto shadow-[0_0_40px_rgba(0,0,0,0.5)]" alt="Giranel - El Comandante" 
                              onerror="this.src='logo.png'">
-                        <!-- ID Tag Cyberpunk -->
                         <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 z-20 bg-black/90 border border-[#00F2FF] px-4 py-2 rounded font-mono text-[10px] tracking-widest text-[#00F2FF] whitespace-nowrap shadow-lg">
                             AUTH: GIRANEL_CMD_01
                         </div>
@@ -279,7 +320,6 @@
                         </div>
                     </div>
                 </div>
-                
                 <!-- Testimonio 2 -->
                 <div class="bg-gray-900/50 border border-gray-800 p-6 rounded-xl relative">
                     <div class="text-[#FFCC00] text-4xl font-serif absolute top-4 left-4 opacity-20">"</div>
@@ -294,7 +334,6 @@
                         </div>
                     </div>
                 </div>
-                
                 <!-- Testimonio 3 -->
                 <div class="bg-gray-900/50 border border-gray-800 p-6 rounded-xl relative">
                     <div class="text-[#FFCC00] text-4xl font-serif absolute top-4 left-4 opacity-20">"</div>
@@ -309,7 +348,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Testimonio 4 -->
                 <div class="bg-gray-900/50 border border-gray-800 p-6 rounded-xl relative">
                     <div class="text-[#FFCC00] text-4xl font-serif absolute top-4 left-4 opacity-20">"</div>
@@ -328,13 +366,12 @@
         </div>
     </section>
 
-    <!-- REQUISITOS & LOGÍSTICA -->
+    <!-- REQUISITOS & LOGÍSTICA (RECUPERADOS) -->
     <section id="requisitos" class="py-20 bg-[#080808] border-t border-gray-900">
         <div class="max-w-5xl mx-auto px-6">
             <div class="text-center mb-12">
                 <h2 class="font-orbitron text-3xl font-bold mb-2">LOGÍSTICA DE <span class="text-[#FFCC00]">COMBATE</span></h2>
                 <p class="text-gray-400 text-sm">Nosotros ponemos los suministros. Tú pones el armamento.</p>
-                
                 <div class="mt-6 inline-block bg-gray-900 border border-gray-700 rounded-lg px-6 py-3">
                     <p class="text-[#00F2FF] font-mono text-sm flex items-center gap-2">
                         <i data-lucide="map-pin" class="w-4 h-4"></i>
@@ -343,8 +380,8 @@
                     <p class="text-xs text-gray-500 mt-1">*Ubicación exacta secreta (Se envía tras confirmar cupo)</p>
                 </div>
             </div>
-            
             <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <!-- SUMINISTROS -->
                 <div class="bg-[#00F2FF]/5 border border-[#00F2FF]/30 p-8 rounded-xl text-center">
                     <i data-lucide="coffee" class="w-12 h-12 text-[#00F2FF] mx-auto mb-4"></i>
                     <h3 class="font-orbitron text-xl text-white mb-2">SUMINISTROS (INCLUIDO)</h3>
@@ -356,6 +393,7 @@
                         <li>✅ Aire Acondicionado</li>
                     </ul>
                 </div>
+                <!-- ARMAMENTO -->
                 <div class="bg-[#FFCC00]/5 border border-[#FFCC00]/30 p-8 rounded-xl text-center">
                     <i data-lucide="laptop" class="w-12 h-12 text-[#FFCC00] mx-auto mb-4"></i>
                     <h3 class="font-orbitron text-xl text-white mb-2">TU ARMAMENTO (OBLIGATORIO)</h3>
@@ -373,57 +411,35 @@
 
     <!-- LA BÓVEDA ANCESTRAL -->
     <section id="boveda" class="py-24 bg-[#0a0a0a] border-t border-gray-900">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="font-orbitron text-4xl font-bold mb-4">LA BÓVEDA <span class="text-[#FFCC00]">ANCESTRAL</span></h2>
-                <p class="text-gray-400 max-w-xl mx-auto">Tecnología para la mente y el cuerpo.</p>
-            </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="font-orbitron text-4xl font-bold mb-16">LA BÓVEDA <span class="text-[#FFCC00]">ANCESTRAL</span></h2>
+            <div class="grid md:grid-cols-3 gap-8 text-left">
                 <!-- Tarjeta 1 -->
-                <div class="bg-black border border-gray-800 p-8 rounded-2xl card-hover transition-all group relative overflow-hidden flex flex-col h-full">
-                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-100 transition">
-                        <i data-lucide="leaf" class="w-24 h-24 text-green-500"></i>
-                    </div>
-                    <h3 class="font-orbitron text-2xl text-white mb-2 relative z-10">PROTOCOLOS ANCESTRALES</h3>
-                    <p class="text-gray-500 text-sm mb-4 font-mono relative z-10">SALUD / REMEDIOS</p>
-                    <p class="text-gray-400 text-sm mb-8 flex-grow relative z-10">
-                        Desbloquea el recetario prohibido para hackear tu biología. Suplementación y remedios naturales para mantener tu máquina física operando al 100%.
-                    </p>
-                    <a href="https://protocolo.aprendia.net" target="_blank" class="mt-auto inline-block w-full py-3 text-center border border-green-500 text-green-500 font-bold hover:bg-green-500 hover:text-black transition rounded relative z-10">ACCEDER AHORA</a>
+                <div class="bg-black border border-gray-800 p-8 rounded-2xl card-hover transition-all group flex flex-col h-full">
+                    <h3 class="font-orbitron text-2xl text-white mb-2">PROTOCOLOS ANCESTRALES</h3>
+                    <p class="text-gray-500 text-sm mb-4 font-mono">SALUD / REMEDIOS</p>
+                    <p class="text-gray-400 text-sm mb-8 flex-grow">Desbloquea el recetario prohibido para hackear tu biología. Suplementación y remedios naturales.</p>
+                    <a href="https://protocolo.aprendia.net" target="_blank" class="py-3 text-center border border-green-500 text-green-500 font-bold hover:bg-green-500 hover:text-black transition rounded">ACCEDER AHORA</a>
                 </div>
-                
                 <!-- Tarjeta 2 -->
-                <div class="bg-black border border-gray-800 p-8 rounded-2xl card-hover transition-all group relative overflow-hidden flex flex-col h-full">
-                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-100 transition">
-                        <i data-lucide="zap" class="w-24 h-24 text-[#FFCC00]"></i>
-                    </div>
-                    <h3 class="font-orbitron text-2xl text-white mb-2 relative z-10">P.A.P.</h3>
-                    <p class="text-gray-500 text-sm mb-4 font-mono relative z-10">PRIMEROS AUXILIOS PSICOLÓGICOS</p>
-                    <p class="text-gray-400 text-sm mb-8 flex-grow relative z-10">
-                        Protocolo de choque para momentos de crisis. Técnicas comprobadas para reiniciar tu sistema nervioso y volver al enfoque absoluto bajo presión.
-                    </p>
-                    <a href="https://pap.aprendia.net" target="_blank" class="mt-auto inline-block w-full py-3 text-center border border-[#FFCC00] text-[#FFCC00] font-bold hover:bg-[#FFCC00] hover:text-black transition rounded relative z-10">VER PROTOCOLO</a>
+                <div class="bg-black border border-gray-800 p-8 rounded-2xl card-hover transition-all group flex flex-col h-full">
+                    <h3 class="font-orbitron text-2xl text-white mb-2">P.A.P.</h3>
+                    <p class="text-gray-500 text-sm mb-4 font-mono uppercase">Primeros Auxilios Psicológicos</p>
+                    <p class="text-gray-400 text-sm mb-8 flex-grow">Protocolo de choque para momentos de crisis y reinicio del sistema nervioso bajo presión.</p>
+                    <a href="https://pap.aprendia.net" target="_blank" class="py-3 text-center border border-[#FFCC00] text-[#FFCC00] font-bold hover:bg-[#FFCC00] hover:text-black transition rounded">VER PROTOCOLO</a>
                 </div>
-                
                 <!-- Tarjeta 3 -->
-                <div class="bg-black border border-gray-800 p-8 rounded-2xl card-hover transition-all group relative overflow-hidden flex flex-col h-full">
-                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-100 transition">
-                        <i data-lucide="brain" class="w-24 h-24 text-purple-500"></i>
-                    </div>
-                    <h3 class="font-orbitron text-2xl text-white mb-2 relative z-10">GYM MENTAL</h3>
-                    <p class="text-gray-500 text-sm mb-4 font-mono relative z-10">ENTRENAMIENTO PARA RIQUEZA</p>
-                    <p class="text-gray-400 text-sm mb-8 flex-grow relative z-10">
-                        Ejercicios diarios de reprogramación neuronal. Expande tu termostato financiero y elimina los virus limitantes de tu software mental.
-                    </p>
-                    <a href="https://gym.aprendia.net" target="_blank" class="mt-auto inline-block w-full py-3 text-center border border-purple-500 text-purple-500 font-bold hover:bg-purple-500 hover:text-black transition rounded relative z-10">INICIAR ENTRENO</a>
+                <div class="bg-black border border-gray-800 p-8 rounded-2xl card-hover transition-all group flex flex-col h-full">
+                    <h3 class="font-orbitron text-2xl text-white mb-2">GYM MENTAL</h3>
+                    <p class="text-gray-500 text-sm mb-4 font-mono">ENTRENAMIENTO PARA RIQUEZA</p>
+                    <p class="text-gray-400 text-sm mb-8 flex-grow">Ejercicios diarios de reprogramación neuronal. Expande tu termostato financiero.</p>
+                    <a href="https://gym.aprendia.net" target="_blank" class="py-3 text-center border border-purple-500 text-purple-500 font-bold hover:bg-purple-500 hover:text-black transition rounded">INICIAR ENTRENO</a>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- FOOTER (RECUPERADO LOGO GRIS) -->
     <footer class="bg-black py-12 border-t border-gray-900 text-center">
         <div class="flex justify-center items-center gap-3 mb-4">
             <img src="logo.png" class="w-20 h-20 rounded-full grayscale opacity-50" alt="Logo" onerror="this.style.display='none'">
