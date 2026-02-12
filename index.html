@@ -3,115 +3,452 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aprendia | High-Tech Ancestral Hub</title>
+    <title>APRENDIA | SOBERANÍA INTEGRAL</title>
+    
+    <link rel="icon" type="image/png" href="logo.png">
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
     <style>
-        :root {
-            --deep-blue: #020617;
-            --cyber-violet: #6d28d9;
-            --neon-green: #22c55e;
-            --electric-blue: #38bdf8;
-        }
-        body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            background-color: var(--deep-blue); 
-            color: #f8fafc;
-            overflow-x: hidden;
-        }
-        .serif { font-family: 'Instrument Serif', serif; }
+        body { background-color: #050505; color: white; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .font-orbitron { font-family: 'Orbitron', sans-serif; }
         
-        .glass { 
-            background: rgba(15, 23, 42, 0.7); 
-            backdrop-filter: blur(16px); 
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+        .neon-text { text-shadow: 0 0 20px rgba(0, 242, 255, 0.6); }
+        .matrix-bg {
+            background-image: url('https://images.unsplash.com/photo-1510915228340-29c85a43dcfe?q=80&w=2000');
+            background-size: cover;
+            background-position: center;
         }
-        .text-gradient {
-            background: linear-gradient(to right, #ffffff, #94a3b8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.2);
+            border-color: #00F2FF;
         }
-        .neo-gradient { 
-            background: linear-gradient(135deg, var(--cyber-violet), var(--electric-blue)); 
+        .hero-gradient {
+            background: radial-gradient(circle at center, rgba(0, 242, 255, 0.15) 0%, rgba(5,5,5,1) 70%);
         }
-        /* Animación de escaneo sutil */
-        .scanline {
-            width: 100%;
-            height: 100vh;
-            background: linear-gradient(to bottom, transparent 50%, rgba(34, 197, 94, 0.02) 50%);
-            background-size: 100% 4px;
-            position: fixed;
-            pointer-events: none;
-            z-index: 100;
+        .cyber-logo-anim {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .price-strike {
+            position: relative;
+            display: inline-block;
+            color: #888;
+        }
+        .price-strike::after {
+            content: '';
+            position: absolute;
+            left: -5%;
+            top: 50%;
+            width: 110%;
+            height: 3px;
+            background-color: #FF0000;
+            transform: rotate(-10deg);
+        }
+        .glitch-ia {
+            position: relative;
+            display: inline-block;
+            color: #FFCC00;
+            text-shadow: 2px 2px #FF00FF;
+            animation: glitch-anim 1s infinite;
+        }
+        @keyframes glitch-anim {
+            0% { text-shadow: 2px 2px #FF00FF; transform: translate(0,0); }
+            20% { text-shadow: -2px -2px #00F2FF; transform: translate(-1px, 1px); }
+            40% { text-shadow: 2px -2px #FF00FF; transform: translate(1px, -1px); }
+            60% { text-shadow: -2px 2px #00F2FF; transform: translate(-1px, 0); }
+            80% { text-shadow: 2px 2px #FF00FF; transform: translate(1px, 0); }
+            100% { text-shadow: 2px 2px #FF00FF; transform: translate(0,0); }
+        }
+        
+        .countdown-box {
+            font-variant-numeric: tabular-nums;
+            font-family: 'JetBrains Mono', monospace;
         }
     </style>
 </head>
 <body>
 
-    <div class="scanline"></div>
-
-    <nav class="fixed w-full z-[110] px-8 py-5 glass">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-4">
-                <img src="logo.png" alt="Aprendia" class="h-20 w-auto block object-contain" style="min-width: 40px;">
-                <div class="text-2xl font-extrabold tracking-tighter uppercase">Aprendia<span class="text-emerald-500">.</span></div>
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <img src="logo.png" class="w-20 h-20 object-contain rounded-full border border-[#00F2FF]" alt="Logo Aprendia" 
+                     onerror="this.style.display='none'; document.getElementById('alt-logo').style.display='block'">
+                <div id="alt-logo" class="hidden font-orbitron text-2xl font-bold tracking-tighter text-white">APREND<span class="text-[#00F2FF]">IA</span></div>
             </div>
-            <div class="hidden md:flex space-x-10 text-[10px] font-bold uppercase tracking-[0.4em] text-slate-400">
-                <a href="#vision" class="hover:text-emerald-400 transition-all">Sistemas</a>
-                <a href="https://protocolo.aprendia.net" class="px-5 py-2 border border-emerald-500/30 rounded-full text-emerald-400 hover:bg-emerald-500 hover:text-black transition duration-500">Acceso Vital</a>
+            <div class="hidden md:flex gap-8 text-sm font-mono text-gray-400 items-center">
+                <a href="#bio" class="hover:text-[#00F2FF] transition">EL COMANDANTE</a>
+                <a href="#agenda" class="hover:text-[#00F2FF] transition">MISIONES</a>
+                <a href="#testimonios" class="hover:text-[#00F2FF] transition">VOCES</a>
             </div>
+            <a href="registro.html" class="hidden md:block px-6 py-2 bg-[#00F2FF]/10 border border-[#00F2FF] text-[#00F2FF] font-bold font-orbitron text-sm hover:bg-[#00F2FF] hover:text-black transition shadow-[0_0_15px_rgba(0,242,255,0.3)]">
+                APLICAR AHORA
+            </a>
         </div>
     </nav>
 
-    <header class="relative min-h-screen flex flex-col justify-center items-center px-6 pt-20">
-        <div class="absolute w-[600px] h-[600px] bg-emerald-500/5 blur-[120px] rounded-full -z-10 animate-pulse"></div>
-        
-        <div class="inline-block px-4 py-1 border border-emerald-500/20 rounded-full mb-8">
-            <span class="text-emerald-500 font-bold uppercase tracking-[0.5em] text-[8px]">Intelligence & Ancestry</span>
-        </div>
-        
-        <h1 class="text-6xl md:text-[8.5rem] font-extrabold tracking-tighter leading-[0.8] text-center text-gradient mb-8">
-            CODIFICANDO EL <br> <span class="serif italic font-light text-emerald-400">Futuro Humano</span>
-        </h1>
-        
-        <p class="max-w-xl text-center text-slate-400 text-sm md:text-base font-light leading-relaxed tracking-widest opacity-80">
-            Democratizamos la <span class="text-violet-400 font-bold">IA de élite</span> y rescatamos la <span class="text-emerald-400 font-bold">Biología Primordial</span>. 
-            Bienvenido al nexo de la nueva era.
-        </p>
-
-        <div class="mt-12 flex gap-6">
-            <a href="#vision" class="neo-gradient px-12 py-4 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] text-white hover:brightness-125 transition-all shadow-xl">
-                Iniciar Protocolo
-            </a>
-        </div>
-    </header>
-
-    <section id="vision" class="py-32 px-6">
-        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
+    <!-- HERO SECTION -->
+    <section id="evento" class="relative min-h-screen flex items-center justify-center pt-32 pb-20 overflow-hidden">
+        <div class="absolute inset-0 matrix-bg opacity-20"></div>
+        <div class="absolute inset-0 hero-gradient"></div>
+        <div class="relative z-10 text-center px-4 max-w-6xl mx-auto">
             
-            <div class="group p-10 rounded-[2.5rem] bg-white/5 border border-white/5 hover:border-violet-500/30 transition-all duration-700">
-                <h3 class="text-violet-500 text-[10px] font-bold uppercase mb-4">Neural Systems</h3>
-                <h2 class="text-4xl font-bold tracking-tighter mb-6">Democratización <br> de la IA</h2>
-                <p class="text-slate-400 text-sm font-light mb-8">Escalamos tu capacidad cognitiva con herramientas de superinteligencia aplicadas al mundo real.</p>
-                <div class="h-px w-full bg-gradient-to-r from-violet-500/50 to-transparent mb-8"></div>
-                <span class="text-[9px] font-bold text-violet-400 uppercase tracking-widest">_ Despliegue en curso</span>
+            <div class="inline-flex items-center gap-2 px-4 py-1 border border-[#FFCC00] rounded-full bg-[#FFCC00]/10 text-[#FFCC00] font-mono text-xs mb-6 tracking-widest animate-pulse">
+                <span class="w-2 h-2 bg-[#FFCC00] rounded-full"></span>
+                CALI • 28 FEBRERO 2026 • 08:00 AM PUNTUAL
             </div>
 
-            <div class="group p-10 rounded-[2.5rem] bg-white/5 border border-white/5 hover:border-emerald-500/30 transition-all duration-700">
-                <h3 class="text-emerald-500 text-[10px] font-bold uppercase mb-4">Biological Assets</h3>
-                <h2 class="text-4xl font-bold tracking-tighter mb-6">Tratados <br> Ancestrales</h2>
-                <p class="text-slate-400 text-sm font-light mb-8">Optimizamos tu vehículo biológico a través de la sabiduría etnobotánica y la física celular.</p>
-                <div class="h-px w-full bg-gradient-to-r from-emerald-500/50 to-transparent mb-8"></div>
-                <a href="https://protocolo.aprendia.net" class="text-[9px] font-bold text-emerald-400 uppercase tracking-widest hover:underline">_ Ejecutar Acceso</a>
+            <!-- CRONÓMETRO -->
+            <div class="mb-8 font-mono text-sm text-gray-500">
+                <p class="mb-2 text-[#00F2FF] text-xs uppercase tracking-widest">Protocolo de Inicio (Vibe Coding):</p>
+                <div id="countdown" class="countdown-box text-2xl md:text-4xl font-bold text-white tracking-widest">
+                    00d : 00h : 00m : 00s
+                </div>
             </div>
+            
+            <div class="flex flex-col md:flex-row items-center justify-center gap-6 mb-8">
+                <h1 class="font-orbitron text-5xl md:text-8xl font-black leading-none tracking-tighter text-center md:text-right">
+                    INMERSIÓN <br/> 
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#00F2FF] to-[#0088FF] neon-text">TÁCTICA</span>
+                    <span class="glitch-ia ml-2">IA</span>
+                </h1>
+                <img src="logo_cyberpunk.png" alt="Insignia Cyberpunk" class="w-48 md:w-64 cyber-logo-anim drop-shadow-[0_0_25px_rgba(0,242,255,0.4)]">
+            </div>
+            
+            <p class="font-inter text-xl md:text-2xl text-gray-300 mb-6 max-w-3xl mx-auto leading-relaxed">
+                <span class="text-[#FFCC00] font-bold">CLUB EXCLUSIVO Y SOBERANO DEL 1%.</span><br/>
+                CIUDADANO AUMENTADO CON IA.<br/>
+                <span class="text-sm md:text-base text-gray-400 mt-4 block italic">
+                    "Por lo que te cuesta una salida a rumbear, una cena o un guayabo,<br/> 
+                    te sumerges en conocimiento y expandes tus horizontes para siempre."
+                </span>
+            </p>
 
+            <div class="mb-10 flex flex-col items-center">
+                <div class="bg-black/40 p-6 rounded-2xl border-2 border-[#FFCC00]/50 backdrop-blur-md shadow-[0_0_30px_rgba(255,204,0,0.2)] transform hover:scale-105 transition-all">
+                    <div class="flex flex-col items-center gap-2">
+                        <span class="text-gray-400 font-mono text-lg uppercase tracking-widest">Valor Real</span>
+                        <span class="price-strike font-orbitron text-3xl font-bold">$197 USD</span>
+                    </div>
+                    <div class="mt-4 border-t border-gray-700 pt-4 w-full"></div>
+                    <div class="text-[#00F2FF] font-black font-orbitron text-5xl md:text-6xl animate-pulse mt-2 drop-shadow-[0_0_10px_rgba(0,242,255,0.8)]">
+                        $69 USD
+                    </div>
+                    <div class="text-[#25D366] font-bold font-mono text-xl mt-1">
+                        (Aprox. $250.000 COP)
+                    </div>
+                </div>
+                
+                <div class="mt-8 grid md:grid-cols-2 gap-4 w-full max-w-2xl">
+                    <div class="bg-blue-900/20 border border-blue-500/30 p-4 rounded-lg text-center">
+                        <h4 class="text-blue-400 font-bold font-orbitron">BONO DE ESCUADRÓN</h4>
+                        <p class="text-gray-300 text-xs mt-1">Líder + 5 Colegas (Total 6)</p>
+                        <p class="text-white font-black text-lg">LÍDER PAGA EL 50%</p>
+                        <p class="text-xs text-gray-400 italic mt-1">"Solo el líder recibe el descuento"</p>
+                    </div>
+                    <div class="bg-[#FFCC00]/20 border border-[#FFCC00]/30 p-4 rounded-lg text-center relative overflow-hidden">
+                        <div class="absolute -right-4 -top-4 bg-[#FFCC00] text-black text-[10px] font-bold px-6 py-1 rotate-45">INMUNIDAD</div>
+                        <h4 class="text-[#FFCC00] font-bold font-orbitron">SOBERANÍA TOTAL</h4>
+                        <p class="text-gray-300 text-xs mt-1">Líder + 9 Colegas (Total 10)</p>
+                        <p class="text-white font-black text-lg">LÍDER ENTRA GRATIS</p>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="flex flex-col md:flex-row gap-6 justify-center items-center">
+                <a href="registro.html" class="px-12 py-6 bg-[#00F2FF] text-black font-black font-orbitron text-xl hover:bg-white transition shadow-[0_0_40px_rgba(0,242,255,0.4)] transform hover:scale-105 rounded-lg flex items-center gap-3">
+                    <i data-lucide="crosshair"></i> SOLICITAR AUDITORÍA DE ACCESO
+                </a>
+            </div>
         </div>
     </section>
 
-    <footer class="py-20 text-center opacity-40">
-        <p class="text-[8px] font-bold uppercase tracking-[0.8em]">Aprendia.net • Cali • 2026 Strategy</p>
+    <!-- BIO / AUTORIDAD (ACTUALIZADA CON TU FOTO GIRANEL1.PNG) -->
+    <section id="bio" class="py-20 bg-[#080808] border-t border-gray-900">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row gap-12 items-center">
+                <div class="w-full md:w-5/12 text-center">
+                    <div class="relative inline-block">
+                        <!-- Glow para tu foto -->
+                        <div class="absolute -inset-1 bg-gradient-to-tr from-[#00F2FF] to-[#FFCC00] rounded-2xl blur-lg opacity-30 animate-pulse"></div>
+                        <!-- Tu Foto de Comandante -->
+                        <img src="giranel1.png" class="relative z-10 w-full max-w-[320px] aspect-[4/5] rounded-xl border-2 border-[#00F2FF]/50 object-cover mx-auto shadow-[0_0_40px_rgba(0,0,0,0.5)]" alt="Giranel - El Comandante" 
+                             onerror="this.src='logo.png'">
+                        <!-- ID Tag Cyberpunk -->
+                        <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 z-20 bg-black/90 border border-[#00F2FF] px-4 py-2 rounded font-mono text-[10px] tracking-widest text-[#00F2FF] whitespace-nowrap shadow-lg">
+                            AUTH: GIRANEL_CMD_01
+                        </div>
+                    </div>
+                    <h3 class="font-orbitron text-white text-2xl mt-8 font-bold">EL COMANDANTE</h3>
+                    <p class="text-[#FFCC00] font-mono text-xs tracking-widest">MASTER EN IA | HACKER ÉTICO</p>
+                </div>
+                <div class="w-full md:w-7/12">
+                    <h2 class="font-orbitron text-3xl font-bold mb-6 text-white uppercase">INFORME DE <span class="text-[#00F2FF]">INTELIGENCIA</span></h2>
+                    <p class="text-gray-300 leading-relaxed mb-4 font-light text-lg">
+                        Después de <strong class="text-white">2.000 horas de vuelo</strong>, más de <strong class="text-[#FFCC00]">$10.000 USD invertidos</strong> en mentores de élite, Masters en IA, Análisis de Datos y paso por Hackathons y Talento Tech del MinTIC...
+                    </p>
+                    <p class="text-gray-300 leading-relaxed mb-6 font-light text-lg">
+                        No vengo a venderte humo. Vengo a entregarte el mapa. He vendido en Hotmart, he operado Meta Ads y he visto cómo la gente pierde el tiempo <strong class="text-red-500 font-bold">mendigando prompts gratuitos</strong>.
+                    </p>
+                    <div class="p-6 bg-gray-900/80 border-l-4 border-[#00F2FF] rounded-r-xl shadow-inner">
+                        <p class="text-white italic leading-relaxed">
+                            "Aquí no te daré un pescado (prompt). Te enseñaré a pescar con dinamita (Lenguaje Natural). Desbloquearás tu mente para ordenarle a la máquina crear Apps, Videos, Canciones y Estrategias Federales. Dejarás de ser un usuario para ser un <strong>COMANDANTE</strong>."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AGENDA TÁCTICA -->
+    <section id="agenda" class="py-20 bg-black border-y border-gray-900">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="font-orbitron text-4xl font-bold mb-4">ORDEN DE <span class="text-[#FFCC00]">BATALLA</span></h2>
+                <p class="text-gray-400">No venimos a estudiar. Venimos a ejecutar.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="flex gap-4 p-6 bg-gray-900/50 rounded-xl border-l-4 border-[#00F2FF] hover:bg-gray-800 transition">
+                    <div class="text-[#00F2FF] font-black text-2xl font-orbitron">01</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2 font-orbitron">OPERACIÓN "CLONACIÓN"</h3>
+                        <p class="text-gray-400 text-sm">Entrenarás a tu IA con tu <strong class="text-white">TONO Y REDACCIÓN</strong> exactos. Tu gemelo digital responderá por ti.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4 p-6 bg-gray-900/50 rounded-xl border-l-4 border-[#FF00FF] hover:bg-gray-800 transition">
+                    <div class="text-[#FF00FF] font-black text-2xl font-orbitron">02</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2 font-orbitron">LENGUAJE SOBERANO</h3>
+                        <p class="text-gray-400 text-sm">Olvídate de "pedir prompts". Aprende el <strong class="text-[#FF00FF]">Lenguaje Natural</strong> para darle órdenes precisas a la máquina. Crearás tus propios comandos infinitos.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4 p-6 bg-gray-900/50 rounded-xl border-l-4 border-[#FFCC00] hover:bg-gray-800 transition">
+                    <div class="text-[#FFCC00] font-black text-2xl font-orbitron">03</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2 font-orbitron">PROTOCOLO C.I.A.</h3>
+                        <p class="text-gray-400 text-sm"><strong class="text-[#FFCC00]">"Central de Inteligencia Acelerada"</strong>. Interroga documentos como un agente federal. Resúmenes y audios al instante.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4 p-6 bg-gray-900/50 rounded-xl border-l-4 border-[#25D366] hover:bg-gray-800 transition">
+                    <div class="text-[#25D366] font-black text-2xl font-orbitron">04</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2 font-orbitron">VIBE CODING</h3>
+                        <p class="text-gray-400 text-sm"><strong class="text-white">NO CODE / LOW CODE.</strong> Usaremos Google AI Studio. Crea Apps web sin saber programar, solo vibrando con la IA.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4 p-6 bg-gray-900/50 rounded-xl border-l-4 border-white md:col-span-2 hover:bg-gray-800 transition items-center justify-center text-center md:text-left">
+                    <div class="text-white font-black text-2xl font-orbitron">05</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2 font-orbitron">EL PLAN MAESTRO</h3>
+                        <p class="text-gray-400 text-sm">Integración estratégica. Democratización del conocimiento. Saldrás siendo parte del <strong class="text-white">Club del 1%</strong>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIOS -->
+    <section id="testimonios" class="py-20 bg-[#080808]">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="font-orbitron text-3xl font-bold mb-4">VOCES DEL <span class="text-[#00F2FF]">FRENTE</span></h2>
+                <p class="text-gray-400">Resultados reales. Sin filtros.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Testimonio 1 -->
+                <div class="bg-gray-900/50 border border-gray-800 p-6 rounded-xl relative">
+                    <div class="text-[#FFCC00] text-4xl font-serif absolute top-4 left-4 opacity-20">"</div>
+                    <p class="text-gray-300 text-sm italic mb-4 relative z-10">
+                        "Aprender a usar NotebookLM para la universidad me cambió la vida. Ahora subo mis apuntes, la IA me simula exámenes completos y aprendo muchísimo más rápido."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center font-bold text-[#00F2FF]">M</div>
+                        <div>
+                            <p class="text-white font-bold text-sm">Mateo R.</p>
+                            <p class="text-gray-500 text-xs">Estudiante Universitario</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonio 2 -->
+                <div class="bg-gray-900/50 border border-gray-800 p-6 rounded-xl relative">
+                    <div class="text-[#FFCC00] text-4xl font-serif absolute top-4 left-4 opacity-20">"</div>
+                    <p class="text-gray-300 text-sm italic mb-4 relative z-10">
+                        "Logré crear una app web sin saber una sola línea de código. Además, ahora le hago los Ebooks aplicando la metodología enseñada, afinándola y personalizándola a mi estilo."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center font-bold text-[#FF00FF]">D</div>
+                        <div>
+                            <p class="text-white font-bold text-sm">David L.</p>
+                            <p class="text-gray-500 text-xs">Infoproductor y Freelancer</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonio 3 -->
+                <div class="bg-gray-900/50 border border-gray-800 p-6 rounded-xl relative">
+                    <div class="text-[#FFCC00] text-4xl font-serif absolute top-4 left-4 opacity-20">"</div>
+                    <p class="text-gray-300 text-sm italic mb-4 relative z-10">
+                        "Empecé aprendiendo a crear prompts para mis imágenes, y ya itero sola para crear una app que me hable y me cree las imágenes con lo que yo le diga. ¡Es increíble!"
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center font-bold text-[#FFCC00]">C</div>
+                        <div>
+                            <p class="text-white font-bold text-sm">Doña Carmen</p>
+                            <p class="text-gray-500 text-xs">Emprendedora</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonio 4 -->
+                <div class="bg-gray-900/50 border border-gray-800 p-6 rounded-xl relative">
+                    <div class="text-[#FFCC00] text-4xl font-serif absolute top-4 left-4 opacity-20">"</div>
+                    <p class="text-gray-300 text-sm italic mb-4 relative z-10">
+                        "Soy creadora de contenido y me tomaba horas producir. Ahora creo podcasts automáticos completos con IA gracias a lo que aprendí en AprendIA con Giranel."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center font-bold text-[#25D366]">V</div>
+                        <div>
+                            <p class="text-white font-bold text-sm">Valentina G.</p>
+                            <p class="text-gray-500 text-xs">Creadora de Contenido</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REQUISITOS & LOGÍSTICA -->
+    <section id="requisitos" class="py-20 bg-[#080808] border-t border-gray-900">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="font-orbitron text-3xl font-bold mb-2">LOGÍSTICA DE <span class="text-[#FFCC00]">COMBATE</span></h2>
+                <p class="text-gray-400 text-sm">Nosotros ponemos los suministros. Tú pones el armamento.</p>
+                
+                <div class="mt-6 inline-block bg-gray-900 border border-gray-700 rounded-lg px-6 py-3">
+                    <p class="text-[#00F2FF] font-mono text-sm flex items-center gap-2">
+                        <i data-lucide="map-pin" class="w-4 h-4"></i>
+                        BASE: SUR DE CALI (Zona San Fernando / Imbanaco)
+                    </p>
+                    <p class="text-xs text-gray-500 mt-1">*Ubicación exacta secreta (Se envía tras confirmar cupo)</p>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="bg-[#00F2FF]/5 border border-[#00F2FF]/30 p-8 rounded-xl text-center">
+                    <i data-lucide="coffee" class="w-12 h-12 text-[#00F2FF] mx-auto mb-4"></i>
+                    <h3 class="font-orbitron text-xl text-white mb-2">SUMINISTROS (INCLUIDO)</h3>
+                    <p class="text-gray-300 font-bold mb-2">COWORKING GASTRONÓMICO</p>
+                    <ul class="text-gray-400 text-sm space-y-2">
+                        <li>✅ Almuerzo Ejecutivo</li>
+                        <li>✅ Refrigerios Tácticos</li>
+                        <li>✅ Café y Agua Ilimitados</li>
+                        <li>✅ Aire Acondicionado</li>
+                    </ul>
+                </div>
+                <div class="bg-[#FFCC00]/5 border border-[#FFCC00]/30 p-8 rounded-xl text-center">
+                    <i data-lucide="laptop" class="w-12 h-12 text-[#FFCC00] mx-auto mb-4"></i>
+                    <h3 class="font-orbitron text-xl text-white mb-2">TU ARMAMENTO (OBLIGATORIO)</h3>
+                    <ul class="text-gray-400 text-sm space-y-3 text-left pl-4 list-disc">
+                        <li><strong>Laptop (PC/Mac) + Celular.</strong></li>
+                        <li><strong>DATOS MÓVILES PROPIOS:</strong> No daremos Wi-Fi. La soberanía depende de tu conexión.</li>
+                        <li><strong>Cuentas Listas:</strong> Gmail (Google), OpenAI (ChatGPT), Gemini (Google AI Studio).</li>
+                        <li><strong>Parqueo:</strong> Recomendamos Uber/Taxi o parqueadero del Éxito San Fernando.</li>
+                        <li><strong>PUNTUALIDAD:</strong> Iniciamos 8:00 AM. <span class="text-red-500 font-bold">Llegar 7:55 AM ya es tarde.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LA BÓVEDA ANCESTRAL -->
+    <section id="boveda" class="py-24 bg-[#0a0a0a] border-t border-gray-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="font-orbitron text-4xl font-bold mb-4">LA BÓVEDA <span class="text-[#FFCC00]">ANCESTRAL</span></h2>
+                <p class="text-gray-400 max-w-xl mx-auto">Tecnología para la mente y el cuerpo.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                
+                <!-- Tarjeta 1 -->
+                <div class="bg-black border border-gray-800 p-8 rounded-2xl card-hover transition-all group relative overflow-hidden flex flex-col h-full">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-100 transition">
+                        <i data-lucide="leaf" class="w-24 h-24 text-green-500"></i>
+                    </div>
+                    <h3 class="font-orbitron text-2xl text-white mb-2 relative z-10">PROTOCOLOS ANCESTRALES</h3>
+                    <p class="text-gray-500 text-sm mb-4 font-mono relative z-10">SALUD / REMEDIOS</p>
+                    <p class="text-gray-400 text-sm mb-8 flex-grow relative z-10">
+                        Desbloquea el recetario prohibido para hackear tu biología. Suplementación y remedios naturales para mantener tu máquina física operando al 100%.
+                    </p>
+                    <a href="https://protocolo.aprendia.net" target="_blank" class="mt-auto inline-block w-full py-3 text-center border border-green-500 text-green-500 font-bold hover:bg-green-500 hover:text-black transition rounded relative z-10">ACCEDER AHORA</a>
+                </div>
+                
+                <!-- Tarjeta 2 -->
+                <div class="bg-black border border-gray-800 p-8 rounded-2xl card-hover transition-all group relative overflow-hidden flex flex-col h-full">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-100 transition">
+                        <i data-lucide="zap" class="w-24 h-24 text-[#FFCC00]"></i>
+                    </div>
+                    <h3 class="font-orbitron text-2xl text-white mb-2 relative z-10">P.A.P.</h3>
+                    <p class="text-gray-500 text-sm mb-4 font-mono relative z-10">PRIMEROS AUXILIOS PSICOLÓGICOS</p>
+                    <p class="text-gray-400 text-sm mb-8 flex-grow relative z-10">
+                        Protocolo de choque para momentos de crisis. Técnicas comprobadas para reiniciar tu sistema nervioso y volver al enfoque absoluto bajo presión.
+                    </p>
+                    <a href="https://pap.aprendia.net" target="_blank" class="mt-auto inline-block w-full py-3 text-center border border-[#FFCC00] text-[#FFCC00] font-bold hover:bg-[#FFCC00] hover:text-black transition rounded relative z-10">VER PROTOCOLO</a>
+                </div>
+                
+                <!-- Tarjeta 3 -->
+                <div class="bg-black border border-gray-800 p-8 rounded-2xl card-hover transition-all group relative overflow-hidden flex flex-col h-full">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-100 transition">
+                        <i data-lucide="brain" class="w-24 h-24 text-purple-500"></i>
+                    </div>
+                    <h3 class="font-orbitron text-2xl text-white mb-2 relative z-10">GYM MENTAL</h3>
+                    <p class="text-gray-500 text-sm mb-4 font-mono relative z-10">ENTRENAMIENTO PARA RIQUEZA</p>
+                    <p class="text-gray-400 text-sm mb-8 flex-grow relative z-10">
+                        Ejercicios diarios de reprogramación neuronal. Expande tu termostato financiero y elimina los virus limitantes de tu software mental.
+                    </p>
+                    <a href="https://gym.aprendia.net" target="_blank" class="mt-auto inline-block w-full py-3 text-center border border-purple-500 text-purple-500 font-bold hover:bg-purple-500 hover:text-black transition rounded relative z-10">INICIAR ENTRENO</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black py-12 border-t border-gray-900 text-center">
+        <div class="flex justify-center items-center gap-3 mb-4">
+            <img src="logo.png" class="w-20 h-20 rounded-full grayscale opacity-50" alt="Logo" onerror="this.style.display='none'">
+            <div class="font-orbitron text-xl font-bold tracking-tighter text-gray-600">APREND<span class="text-gray-400">IA</span></div>
+        </div>
+        <p class="text-gray-600 text-sm font-mono mb-6">© 2026 COMANDO SOBERANÍA. CALI, COLOMBIA.</p>
     </footer>
 
+    <script>
+        lucide.createIcons();
+        const targetDate = new Date("Feb 28, 2026 08:00:00").getTime();
+        const countdownElement = document.getElementById("countdown");
+        setInterval(() => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+            if (distance < 0) {
+                countdownElement.innerHTML = "MISIÓN EN CURSO";
+                return;
+            }
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            countdownElement.innerHTML = `${days}d : ${hours.toString().padStart(2, '0')}h : ${minutes.toString().padStart(2, '0')}m : ${seconds.toString().padStart(2, '0')}s`;
+        }, 1000);
+    </script>
 </body>
 </html>
-

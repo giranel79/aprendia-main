@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REGISTRO OFICIAL | COMANDO SOBERANÍA</title>
+    
+    <link rel="icon" type="image/png" href="logo.png">
+    
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --neon-cyan: #00F2FF;
+            --gold-cmd: #FFCC00;
+            --gold-glow: rgba(255, 204, 0, 0.7);
+        }
+
+        body { 
+            background-color: #050505; 
+            color: white; 
+            font-family: 'Inter', sans-serif; 
+            overflow: hidden; 
+            height: 100vh;
+            width: 100vw;
+            margin: 0;
+        }
+
+        .font-orbitron { font-family: 'Orbitron', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        
+        /* FONDO SOLICITADO */
+        .main-bg {
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)), url('fondologo3d_metallic.png'); 
+            background-size: cover;
+            background-position: center;
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+        }
+
+        .neon-border {
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.1);
+            border: 1px solid rgba(0, 242, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .input-field {
+            background: rgba(10, 10, 10, 0.9);
+            border: 1px solid #333;
+            color: var(--neon-cyan);
+            transition: all 0.3s;
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+        }
+
+        /* EFECTO RETROILUMINADO ORO PARA EL LOGO */
+        .gold-backlight {
+            filter: drop-shadow(0 0 15px var(--gold-glow)) drop-shadow(0 0 40px rgba(255, 204, 0, 0.3));
+            animation: pulse-gold 3s infinite ease-in-out;
+        }
+
+        @keyframes pulse-gold {
+            0%, 100% { filter: drop-shadow(0 0 15px var(--gold-glow)) drop-shadow(0 0 40px rgba(255, 204, 0, 0.3)); transform: scale(1); }
+            50% { filter: drop-shadow(0 0 25px var(--gold-glow)) drop-shadow(0 0 60px rgba(255, 204, 0, 0.5)); transform: scale(1.02); }
+        }
+
+        .glow-ia {
+            color: var(--neon-cyan) !important;
+            font-weight: 900;
+            text-shadow: 0 0 10px var(--neon-cyan);
+        }
+
+        .whatsapp-btn {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .option-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.2s;
+        }
+        .option-btn:hover {
+            border-color: var(--gold-cmd);
+            background: rgba(255, 204, 0, 0.08);
+            transform: translateX(4px);
+        }
+
+        .fade-enter { animation: fadeIn 0.5s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Scrollbar interno para la tarjeta */
+        .custom-scroll::-webkit-scrollbar { width: 4px; }
+        .custom-scroll::-webkit-scrollbar-track { background: transparent; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: var(--neon-cyan); border-radius: 10px; }
+    </style>
+</head>
+<body>
+
+    <div class="main-bg"></div>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby6m-mFdJDhdciwma18LOSk0xvj6cl1M54VQGB9wJfwHN2jkRlK2mJalftRfxNorRaDgA/exec";
+        const LOGO_CYBER = "logo_cyberpunk.png";
+
+        const questions = [
+            { id: "alias", title: "FASE 01: IDENTIFICACIÓN", text: "Hola. Sabemos que dar el primer paso es difícil. Para empezar, ¿cómo te gusta que te llamen?", helper: "Tu nombre corto o apodo (Ej: Ana, Javi, Profe, Doc...)", placeholder: "Ingresa tu alias...", type: "text" },
+            { id: "nombre", title: "FASE 02: REGISTRO CIVIL", text: "Un gusto. Para tu certificado oficial, necesitamos tu Nombre y Apellido completos.", helper: "Escríbelo correctamente para tu diploma.", placeholder: "Nombre y Apellido completo", type: "text" },
+            { id: "ubicacion", title: "FASE 03: POSICIONAMIENTO", text: "El evento principal es PRESENCIAL en CALI. ¿Desde dónde operarás?", type: "select", options: ["Estoy en Cali (o puedo viajar) - ASISTENCIA FÍSICA", "Estoy en otra ciudad/país - INTERÉS VIRTUAL/GRABACIÓN"] },
+            { id: "equipo", title: "FASE 04: HARDWARE", text: "Para construir tu sistema digital, confirma tu equipamiento de combate:", helper: "⚠️ Requisito indispensable para las misiones prácticas.", type: "select", options: ["Tengo Laptop, Celular con DATOS y Cuentas de IA", "Me falta algo pero lo tendré listo para el día del evento"] },
+            { id: "email", title: "FASE 05: ENLACE", text: "Ingresa tu MEJOR CORREO (El que tienes sincronizado en tu terminal móvil)", helper: "⚠️ Evita correos inactivos o perderás acceso a herramientas.", placeholder: "agente@soberania.com", type: "email" },
+            { id: "rol", title: "FASE 06: PERFIL OPERATIVO", text: "¿Cuál de estas categorías define mejor tu situación actual?", type: "select", options: ["Buscando Oportunidad / Desempleado", "Cabeza de Hogar / Cuidador", "Empleado / Profesional", "Estudiante", "Dueño de Negocio"] },
+            { id: "libertad", title: "FASE 07: OBJETIVO FINANCIERO", text: "¿Cuál es el ingreso mensual que cambiaría tu realidad hoy?", type: "select", options: ["500 - 800 USD (Alivio Inmediato)", "1.000 - 2.000 USD (Estabilidad)", "3.000 USD o más(Libertad Total)", "Conocimiento, no dinero"] },
+            { id: "dolor", title: "FASE 08: ANÁLISIS DE FALLO", text: "¿Cuál es el CUELLO DE BOTELLA que más drena tus recursos hoy?", type: "select", options: ["FLUJO DE CAJA: Falta de ingresos", "TIEMPO: Tareas repetitivas", "OBSOLESCENCIA: Quedarme atrás", "PARÁLISIS: Falta de ejecución"] },
+            { id: "mision", title: "FASE 09: PRIORIDAD TÁCTICA", text: "¿Qué módulo te urge dominar primero?", type: "select", options: ["OPERACIÓN CLONACIÓN (GPTs)", "LENGUAJE SOBERANO (Prompts)", "PROTOCOLO C.I.A. (Documentos)", "VIBE CODING (Software)", "EL PLAN MAESTRO (Integración)"] },
+            { id: "nivel_ia", title: "FASE 10: COMPETENCIA", text: "¿Cuál es tu nivel actual con herramientas de IA?", type: "select", options: ["Nivel 0: Absolutamente nada", "Nivel 1: Curiosidad", "Nivel 2: Usuario", "Nivel 3: Avanzado"] },
+            { id: "tech_check", title: "FASE 11: APTITUD DIGITAL", text: "¿Confirmas habilidades básicas de navegación y gestión de archivos?", type: "select", options: ["CONFIRMADO: Domino lo básico.", "NO SÉ: Veré el video de nivelación."] },
+            { id: "compromiso", title: "FASE 12: DISCIPLINA", text: "Iniciamos 8:00 AM Puntual. ¿Aceptas el compromiso de puntualidad?", type: "select", options: ["¡SÍ! Estaré listo antes de las 8:00 AM", "No estoy seguro de llegar a tiempo"] },
+            { id: "legales", title: "FASE 13: AUTORIZACIÓN", text: "Autorizo el tratamiento de datos según la Ley 1581.", type: "select", options: ["ACEPTO Y AUTORIZO"] }
+        ];
+
+        const App = () => {
+            const [step, setStep] = useState(-1);
+            const [formData, setFormData] = useState({});
+            const [loading, setLoading] = useState(false);
+            const [textInput, setTextInput] = useState("");
+            const inputRef = useRef(null);
+
+            const formatText = (text) => {
+                if (!text) return "";
+                const parts = text.split(/(IA)/g);
+                return parts.map((part, i) => 
+                    part === "IA" ? <span key={i} className="glow-ia mx-0.5">IA</span> : part
+                );
+            };
+
+            const getWhatsAppLink = () => {
+                const alias = formData.alias || "ASPIRANTE";
+                const mision = formData.mision || "MISIÓN IA";
+                const rawText = `:: REPORTE TÁCTICO DE INGRESO ::\n\n👤 *AGENTE:* ${alias}\n🎯 *MISIÓN:* ${mision}\n\n🫡 Comandante, he completado mi registro. Solicito validación humana para acceder al CLUB DEL 1%.`;
+                return `https://wa.me/573155822315?text=${encodeURIComponent(rawText)}`;
+            };
+
+            useEffect(() => {
+                setTextInput(""); 
+                if (inputRef.current) inputRef.current.focus();
+            }, [step]);
+
+            const handleNext = (key, value) => {
+                if (!value || value.trim() === "") return;
+                const newData = { ...formData, [key]: value };
+                setFormData(newData);
+                if (step === questions.length - 1) submitData(newData);
+                else setStep(prev => prev + 1);
+            };
+
+            const submitData = async (data) => {
+                setLoading(true);
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = GOOGLE_SCRIPT_URL;
+                Object.keys(data).forEach(key => {
+                    const input = document.createElement('input');
+                    input.type = 'hidden'; input.name = key; input.value = data[key];
+                    form.appendChild(input);
+                });
+                const timeInput = document.createElement('input');
+                timeInput.type = 'hidden'; timeInput.name = 'timestamp';
+                timeInput.value = new Date().toLocaleString();
+                form.appendChild(timeInput);
+
+                const iframe = document.createElement('iframe');
+                iframe.name = 'hidden_iframe'; iframe.style.display = 'none';
+                document.body.appendChild(iframe);
+                form.target = 'hidden_iframe';
+                document.body.appendChild(form);
+                form.submit();
+                
+                setTimeout(() => { setStep(questions.length); setLoading(false); }, 2000);
+            };
+
+            // PANTALLA INICIAL: SOLO LOGO CYBERPUNK GRANDE Y RETROILUMINADO
+            if (step === -1) {
+                return (
+                    <div className="h-screen w-full flex items-center justify-center p-4">
+                        <div className="max-w-md w-full text-center neon-border bg-black/80 p-8 rounded-3xl fade-enter">
+                            <div className="mb-8">
+                                <img 
+                                    src={LOGO_CYBER} 
+                                    alt="Comando Soberanía" 
+                                    className="w-56 md:w-72 mx-auto gold-backlight" 
+                                />
+                            </div>
+                            
+                            <h1 className="font-orbitron text-xl md:text-2xl text-white mb-2 tracking-tight">
+                                INMERSIÓN TÁCTICA <span className="glow-ia">IA</span>
+                            </h1>
+                            <p className="text-gray-400 text-xs md:text-sm mb-8 font-light uppercase tracking-widest">
+                                Bootcamp de Soberanía Digital
+                            </p>
+
+                            <button 
+                                onClick={() => setStep(0)} 
+                                className="w-full py-4 bg-[#00F2FF] text-black font-black font-orbitron hover:bg-white transition-all text-sm tracking-widest rounded-xl shadow-[0_0_20px_rgba(0,242,255,0.4)]"
+                            >
+                                INICIAR PROTOCOLO
+                            </button>
+                        </div>
+                    </div>
+                );
+            }
+
+            // PANTALLA DE ÉXITO
+            if (step === questions.length) {
+                return (
+                    <div className="h-screen w-full flex items-center justify-center p-4">
+                        <div className="max-w-md w-full neon-border bg-black/90 p-8 rounded-2xl text-center fade-enter">
+                            <div className="text-4xl mb-4">✅</div>
+                            <h2 className="font-orbitron text-xl text-[#FFCC00] mb-6 uppercase tracking-widest">Registro Encriptado</h2>
+                            <p className="text-gray-300 text-[11px] mb-8 leading-relaxed uppercase">
+                                El sistema ha saturado los cupos automáticos. Para activar tu beneficio de <strong className="text-white">$69 USD</strong>, debes realizar la validación humana ahora mismo.
+                            </p>
+                            <a href={getWhatsAppLink()} target="_blank" className="whatsapp-btn block w-full py-5 text-white font-black font-orbitron text-xs rounded-2xl">
+                                ENVIAR REPORTE AL COMANDANTE
+                            </a>
+                        </div>
+                    </div>
+                );
+            }
+
+            const currentQ = questions[step];
+
+            // PANTALLA DE PREGUNTAS
+            return (
+                <div className="h-screen w-full flex flex-col items-center justify-center p-4">
+                    <div className="fixed top-0 left-0 w-full h-1 bg-gray-900">
+                        <div className="h-full bg-[#00F2FF] transition-all duration-500 shadow-[0_0_10px_#00F2FF]" style={{width: `${((step + 1) / questions.length) * 100}%`}}></div>
+                    </div>
+
+                    <div className="max-w-lg w-full neon-border bg-black/90 p-6 md:p-8 rounded-2xl fade-enter overflow-hidden flex flex-col max-h-[90vh]">
+                        <div className="flex justify-between items-center mb-4 border-b border-gray-800 pb-2">
+                            <span className="text-[#00F2FF] font-mono text-[10px] tracking-widest uppercase">Paso {step + 1} de {questions.length}</span>
+                            <span className="text-gray-600 font-mono text-[9px]">SECURE_LINK_ACTIVE</span>
+                        </div>
+
+                        <div className="custom-scroll overflow-y-auto flex-1">
+                            <h3 className="text-[#FFCC00] font-mono text-[10px] uppercase mb-2 tracking-widest">{currentQ.title}</h3>
+                            <h1 className="font-orbitron text-base md:text-xl text-white mb-4 leading-tight">
+                                {formatText(currentQ.text)}
+                            </h1>
+
+                            {currentQ.helper && (
+                                <div className="mb-6 p-3 bg-[#00F2FF]/5 border-l-2 border-[#00F2FF] text-gray-400 font-mono text-[10px] leading-tight uppercase italic">
+                                    {currentQ.helper}
+                                </div>
+                            )}
+
+                            {(currentQ.type === 'text' || currentQ.type === 'email') && (
+                                <form onSubmit={(e) => { e.preventDefault(); handleNext(currentQ.id, textInput); }} className="space-y-4">
+                                    <input 
+                                        ref={inputRef} type={currentQ.type} value={textInput}
+                                        onChange={(e) => setTextInput(e.target.value)}
+                                        placeholder={currentQ.placeholder}
+                                        className="w-full p-4 rounded-xl text-sm input-field font-mono text-center"
+                                        required
+                                    />
+                                    <button type="submit" className="w-full py-4 bg-white/10 hover:bg-[#00F2FF] hover:text-black text-white font-bold uppercase rounded-xl transition-all text-xs tracking-widest">
+                                        Confirmar Entrada
+                                    </button>
+                                </form>
+                            )}
+
+                            {currentQ.type === 'select' && (
+                                <div className="space-y-3">
+                                    {currentQ.options.map((opt, i) => (
+                                        <button key={i} onClick={() => handleNext(currentQ.id, opt)} className="w-full p-3 text-left rounded-xl transition font-mono text-[12px] flex items-center gap-4 group option-btn">
+                                            <div className="min-w-[28px] h-7 border border-gray-700 rounded-lg flex items-center justify-center text-[10px] group-hover:border-[#FFCC00] text-gray-500 group-hover:text-[#FFCC00]">
+                                                {String.fromCharCode(65+i)}
+                                            </div>
+                                            <span className="flex-1 text-white opacity-80 group-hover:opacity-100 leading-snug">{formatText(opt)}</span>
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                        
+                        {step > 0 && (
+                            <button onClick={() => setStep(step - 1)} className="mt-4 text-gray-600 hover:text-white text-[9px] font-mono uppercase tracking-widest transition-colors">
+                                [ &lt; Volver al Paso Anterior ]
+                            </button>
+                        )}
+                    </div>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
