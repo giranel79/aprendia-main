@@ -39,7 +39,6 @@
             pointer-events: none;
         }
 
-        /* ANIMACIÓN LOGO */
         @keyframes logoFloat {
             0%, 100% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.4)); }
             50% { transform: translateY(-15px) scale(1.02); filter: drop-shadow(0 0 60px rgba(255, 215, 0, 0.7)); }
@@ -47,9 +46,9 @@
         .logo-main { animation: logoFloat 5s ease-in-out infinite; }
 
         @keyframes arrows {
-            0% { opacity: 0; transform: translateX(-10px); }
+            0% { opacity: 0; transform: translateX(-100%); }
             50% { opacity: 1; }
-            100% { opacity: 0; transform: translateX(10px); }
+            100% { opacity: 0; transform: translateX(100%); }
         }
         .arrow { animation: arrows 1.2s infinite; }
         .delay-1 { animation-delay: 0.2s; }
@@ -64,7 +63,6 @@
             box-shadow: 0 0 40px rgba(0, 242, 255, 0.8);
         }
 
-        /* CARD SCALE 90% */
         .quiz-card {
             background: rgba(10, 10, 10, 0.95);
             border: 1px solid rgba(0, 242, 255, 0.2);
@@ -72,27 +70,39 @@
             transform: scale(0.9);
         }
 
-        /* DOPAMINE SHOCK */
         @keyframes alertFlash {
             0%, 100% { background: rgba(255, 0, 60, 0.1); }
             50% { background: rgba(255, 0, 60, 0.3); }
         }
         .critical-alert { animation: alertFlash 1s infinite; }
 
-        @keyframes pricePulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); text-shadow: 0 0 20px #39FF14; }
-        }
-        .price-hot { animation: pricePulse 0.5s infinite; }
-
+        /* BOTONES WHATSAPP */
         .wa-btn {
             background: #25D366;
-            box-shadow: 0 0 30px rgba(37, 211, 102, 0.5);
-            animation: wa-jump 2s infinite;
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
         }
-        @keyframes wa-jump {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        .wa-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 40px rgba(37, 211, 102, 0.7);
+            background: #ffffff;
+            color: #25D366;
+        }
+
+        .community-btn {
+            border: 2px solid #25D366;
+            background: rgba(37, 211, 102, 0.1);
+            animation: pulse-border 2s infinite;
+        }
+        @keyframes pulse-border {
+            0%, 100% { border-color: #25D366; box-shadow: 0 0 10px rgba(37, 211, 102, 0.2); }
+            50% { border-color: #ffffff; box-shadow: 0 0 25px rgba(37, 211, 102, 0.5); }
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
     </style>
 </head>
@@ -154,7 +164,6 @@
                 } catch (e) { setStep(100); }
             };
 
-            // LANDING
             if (step === -1) return (
                 <div className="h-screen w-screen flex items-center justify-center px-6 lg:px-20 overflow-hidden">
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center w-full max-w-[1500px]">
@@ -164,15 +173,14 @@
                                 <span className="text-[#00F2FF] drop-shadow-[0_0_20px_#00F2FF]">IA</span>
                             </h1>
                             <div className="h-1 w-24 bg-[#FFD700] my-8 mx-auto lg:mx-0"></div>
-                            <p className="font-mono text-xs text-[#FFD700] tracking-[0.5em] uppercase opacity-70">Soberanía Tech / 
-Cali 2026</p>
+                            <p className="font-mono text-xs text-[#FFD700] tracking-[0.5em] uppercase opacity-70">Soberanía Tech / Cali 2026</p>
                         </div>
                         <div className="flex justify-center order-first lg:order-none">
                             <img src="logo_cyberpunk.png" className="logo-main w-[350px] md:w-[600px]" onError={e => e.target.src="https://i.ibb.co/LdsXF5G/logo-cyber.png"} />
                         </div>
                         <div className="flex justify-center lg:justify-end z-20">
                             <button onClick={() => setStep(0)} className="btn-glow bg-[#00F2FF] text-black font-black font-orbitron px-10 py-7 rounded-2xl flex items-center gap-5 group">
-                                <span className="tracking-[0.2em] text-sm">INICIAR FASE REGISTRO</span>
+                                <span className="tracking-[0.2em] text-sm uppercase">Iniciar Fase Registro</span>
                                 <div className="flex text-2xl"><span className="arrow">{'>'}</span><span className="arrow delay-1">{'>'}</span><span className="arrow delay-2">{'>'}</span></div>
                             </button>
                         </div>
@@ -180,24 +188,21 @@ Cali 2026</p>
                 </div>
             );
 
-            // LOADING
             if (step === 99) return (
                 <div className="h-screen flex items-center justify-center font-orbitron bg-black">
                     <div className="text-center space-y-4">
                         <div className="w-16 h-16 border-4 border-[#00F2FF] border-t-transparent rounded-full animate-spin mx-auto"></div>
-                        <p className="tracking-[0.6em] text-[10px] text-[#00F2FF] animate-pulse">SINCRONIZANDO NODOS...</p>
+                        <p className="tracking-[0.6em] text-[10px] text-[#00F2FF] animate-pulse uppercase">Sincronizando Nodos de Soberanía...</p>
                     </div>
                 </div>
             );
 
-            // FINAL DOPAMINE SHOCK
             if (step === 100) {
                 const waMessage = `🫡 COMANDANTE, soy ${formData.alias}. 
+He completado mi registro para el Comando IA Cali. 
 Mi perfil: ${formData.rol}.
-Mi desafío actual: ${formData.dolor}.
 ID DE SESIÓN: [#${sessionId}]
-
-He completado mi registro para el Comando IA Cali. Deseo asegurar mi cupo con el precio de preventa de $69 USD (Ahorro de $128 USD). ¿Cuáles son los pasos de pago?`;
+Deseo validar mi cupo de preventa. ¿Cuáles son los pasos a seguir?`;
 
                 return (
                     <div className="h-screen w-screen flex items-center justify-center p-4 bg-black overflow-hidden relative">
@@ -205,7 +210,7 @@ He completado mi registro para el Comando IA Cali. Deseo asegurar mi cupo con el
                         
                         <div className="relative z-10 w-full max-w-lg text-center space-y-6">
                             <div className="bg-[#FF003C] text-black font-black font-orbitron py-2 px-8 inline-block skew-x-[-15deg] text-xs tracking-[0.4em] animate-pulse">
-                                ACCESO RESTRINGIDO - CUPO RESERVADO
+                                REGISTRO INYECTADO - CUPO RESERVADO
                             </div>
 
                             <h2 className="font-orbitron text-5xl md:text-6xl font-black text-white leading-none">
@@ -213,47 +218,51 @@ He completado mi registro para el Comando IA Cali. Deseo asegurar mi cupo con el
                             </h2>
 
                             <div className="bg-white/5 border border-white/10 p-8 rounded-[2.5rem] backdrop-blur-2xl relative overflow-hidden group">
-                                <div className="absolute top-0 right-0 p-4 font-mono text-[10px] text-white/20 tracking-tighter">REF: #{sessionId}</div>
+                                <div className="absolute top-0 right-0 p-4 font-mono text-[10px] text-white/20 tracking-tighter uppercase">REF: #{sessionId}</div>
                                 
-                                <p className="font-mono text-[10px] text-[#FFD700] tracking-[0.4em] uppercase mb-4 opacity-70">Liquidación de Cuota</p>
+                                <p className="font-mono text-[10px] text-[#FFD700] tracking-[0.4em] uppercase mb-6 opacity-70">Acceso Validado por Inteligencia</p>
                                 
-                                <div className="flex justify-center items-center gap-6 mb-2">
-                                    <span className="text-white/30 text-2xl line-through font-bold">$197</span>
-                                    <span className="text-6xl md:text-7xl font-black text-[#39FF14] price-hot drop-shadow-[0_0_15px_#39FF14]">$69</span>
-                                    <span className="text-white font-black text-xl">USD</span>
-                                </div>
-                                <p className="text-[#FF003C] font-black text-[10px] tracking-widest uppercase mb-6 animate-pulse">¡AHORRO INMEDIATO DE $128 USD!</p>
-
-                                <p className="text-gray-400 text-xs leading-relaxed max-w-xs mx-auto mb-8">
-                                    <span className="text-white font-bold">{formData.alias}</span>, tu registro ha sido inyectado en el sistema central. Para activar tu rango y evitar el aumento de precio, contacta al Comandante ahora mismo.
+                                <p className="text-gray-300 text-sm leading-relaxed max-w-xs mx-auto mb-10">
+                                    <span className="text-white font-bold">{formData.alias}</span>, tus datos están en la base central. Completa tu integración con los siguientes pasos obligatorios:
                                 </p>
 
-                                <a 
-                                    href={`https://wa.me/573155822315?text=${encodeURIComponent(waMessage)}`}
-                                    target="_blank"
-                                    className="wa-btn flex items-center justify-center gap-4 py-6 rounded-2xl text-white font-black font-orbitron text-lg group-hover:scale-105 transition-transform"
-                                >
-                                    <svg className="w-8 h-8 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.417-.003 6.557-5.338 11.892-11.893 11.892-1.997-.001-3.951-.5-5.688-1.448l-6.305 1.652zm6.599-3.835c1.516.899 3.3 1.374 5.29 1.375 5.405 0 9.803-4.397 9.805-9.801.001-2.618-1.02-5.08-2.875-6.934-1.856-1.855-4.318-2.873-6.937-2.872-5.406 0-9.803 4.397-9.806 9.802 0 2.083.524 4.117 1.516 5.9l-.988 3.604 3.695-.97zM17.507 14.39c-.324-.162-1.92-.949-2.217-1.058-.297-.108-.513-.162-.73.162-.216.324-.838 1.058-1.027 1.274-.189.216-.378.243-.702.081-.324-.162-1.37-.504-2.611-1.611-.965-.86-1.617-1.923-1.806-2.247-.189-.324-.02-.5-.182-.661-.146-.145-.324-.378-.486-.568-.162-.189-.216-.324-.324-.54-.108-.216-.054-.405.027-.567.081-.162.73-1.058 1.108-1.595.108-.162.189-.27.27-.432.081-.162.054-.324.027-.486-.027-.162-.73-1.757-1-2.405-.262-.63-.531-.54-.73-.55l-.621-.01c-.216 0-.567.081-.865.405-.297.324-1.135 1.108-1.135 2.703s1.162 3.135 1.324 3.351c.162.216 2.284 3.488 5.533 4.894.773.335 1.376.535 1.846.684.775.245 1.48.211 2.037.128.621-.093 1.92-.784 2.19-1.54.27-.757.27-1.405.189-1.541-.081-.136-.297-.216-.621-.378z"/></svg>
-                                VALIDAR MI ACCESO
-                                <div className="ml-2 flex gap-1 opacity-50"><span className="arrow">{'>'}</span><span className="arrow delay-1">{'>'}</span></div>
-                            </a>
-                        </div>
-                        
-                        <div className="font-mono text-[9px] text-white/20 tracking-[0.5em] uppercase">
-                            Protocolo Finalizado con éxito // Cali.Col
+                                <div className="space-y-4">
+                                    {/* BOTÓN 1: MENSAJE DIRECTO (VALIDACIÓN) */}
+                                    <a 
+                                        href={`https://wa.me/573155822315?text=${encodeURIComponent(waMessage)}`}
+                                        target="_blank"
+                                        className="wa-btn flex items-center justify-center gap-4 py-5 rounded-2xl text-white font-black font-orbitron text-sm uppercase transition-all"
+                                    >
+                                        <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.417-.003 6.557-5.338 11.892-11.893 11.892-1.997-.001-3.951-.5-5.688-1.448l-6.305 1.652zm6.599-3.835c1.516.899 3.3 1.374 5.29 1.375 5.405 0 9.803-4.397 9.805-9.801.001-2.618-1.02-5.08-2.875-6.934-1.856-1.855-4.318-2.873-6.937-2.872-5.406 0-9.803 4.397-9.806 9.802 0 2.083.524 4.117 1.516 5.9l-.988 3.604 3.695-.97zM17.507 14.39c-.324-.162-1.92-.949-2.217-1.058-.297-.108-.513-.162-.73.162-.216.324-.838 1.058-1.027 1.274-.189.216-.378.243-.702.081-.324-.162-1.37-.504-2.611-1.611-.965-.86-1.617-1.923-1.806-2.247-.189-.324-.02-.5-.182-.661-.146-.145-.324-.378-.486-.568-.162-.189-.216-.324-.324-.54-.108-.216-.054-.405.027-.567.081-.162.73-1.058 1.108-1.595.108-.162.189-.27.27-.432.081-.162.054-.324.027-.486-.027-.162-.73-1.757-1-2.405-.262-.63-.531-.54-.73-.55l-.621-.01c-.216 0-.567.081-.865.405-.297.324-1.135 1.108-1.135 2.703s1.162 3.135 1.324 3.351c.162.216 2.284 3.488 5.533 4.894.773.335 1.376.535 1.846.684.775.245 1.48.211 2.037.128.621-.093 1.92-.784 2.19-1.54.27-.757.27-1.405.189-1.541-.081-.136-.297-.216-.621-.378z"/></svg>
+                                        1. VALIDAR MI CUPO (DM)
+                                    </a>
+
+                                    {/* BOTÓN 2: COMUNIDAD WHATSAPP (ACCESO DIRECTO) */}
+                                    <a 
+                                        href="https://chat.whatsapp.com/IE48g9sL3Jm7MFTVDHZTlu"
+                                        target="_blank"
+                                        className="community-btn flex items-center justify-center gap-4 py-5 rounded-2xl text-white font-black font-orbitron text-sm uppercase transition-all"
+                                    >
+                                        <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 1.891.527 3.655 1.438 5.161L2.057 24l6.305-1.652C9.773 23.27 10.865 24 12 24c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 2c4.411 0 8 3.589 8 8s-3.589 8-8 8c-.896 0-1.761-.151-2.564-.426l-3.321.871.868-3.172A7.957 7.957 0 014 12c0-4.411 3.589-8 8-8zm0 2a6 6 0 00-6 6c0 1.365.459 2.622 1.229 3.633l-.612 2.238 2.302-.604A5.95 5.95 0 0012 18a6 6 0 006-6 6 6 0 00-6-6z"/></svg>
+                                        2. ENTRAR AL COMANDO (GRUPO)
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div className="font-mono text-[9px] text-white/20 tracking-[0.5em] uppercase">
+                                Protocolo Finalizado // Aprendia ColombIA
+                            </div>
                         </div>
                     </div>
-                </div>
-            );
+                );
             }
 
-            // QUESTIONS FLOW
             const q = questions[step];
             return (
                 <div className="h-screen w-screen flex items-center justify-center p-4">
                     <div className="quiz-card w-full max-w-lg p-10 rounded-[3rem] shadow-[0_0_60px_rgba(0,0,0,0.8)] border-t-4 border-t-[#00F2FF]">
                         <div className="mb-10">
-                            <div className="flex justify-between text-[10px] font-mono text-[#00F2FF] mb-3 tracking-[0.3em]">
+                            <div className="flex justify-between text-[10px] font-mono text-[#00F2FF] mb-3 tracking-[0.3em] uppercase">
                                 <span>SEC {step + 1} / {questions.length}</span>
                                 <span className="text-[#FFD700]">ID: {sessionId}</span>
                             </div>
@@ -263,7 +272,7 @@ He completado mi registro para el Comando IA Cali. Deseo asegurar mi cupo con el
                         </div>
 
                         <span className="inline-block px-4 py-1.5 bg-[#FFD700] text-black text-[9px] font-black tracking-widest rounded-lg mb-6 uppercase shadow-lg shadow-[#FFD700]/20">{q.title}</span>
-                        <h2 className="text-3xl font-black mb-10 leading-none tracking-tight">{q.text}</h2>
+                        <h2 className="text-3xl font-black mb-10 leading-none tracking-tight uppercase">{q.text}</h2>
 
                         <div className="space-y-4">
                             {q.type !== 'select' ? (
@@ -275,14 +284,14 @@ He completado mi registro para el Comando IA Cali. Deseo asegurar mi cupo con el
                                         onChange={e => setInput(e.target.value)}
                                         onKeyPress={e => e.key === 'Enter' && input && handleNext(input)}
                                     />
-                                    <button onClick={() => input && handleNext(input)} className="w-full py-6 bg-white/5 hover:bg-white/10 font-orbitron text-[11px] tracking-[0.6em] border border-white/10 rounded-2xl transition-all uppercase"> PROCESAR » </button>
+                                    <button onClick={() => input && handleNext(input)} className="w-full py-6 bg-white/5 hover:bg-white/10 font-orbitron text-[11px] tracking-[0.6em] border border-white/10 rounded-2xl transition-all uppercase"> Procesar » </button>
                                 </>
                             ) : (
                                 <div className="grid gap-4">
                                     {q.options.map((opt, i) => (
                                         <button 
                                             key={i} onClick={() => handleNext(opt)}
-                                            className="group bg-white/5 p-6 rounded-2xl text-left text-sm font-bold flex items-center justify-between hover:bg-[#00F2FF]/10 border border-transparent hover:border-[#00F2FF]/50 transition-all"
+                                            className="group bg-white/5 p-6 rounded-2xl text-left text-sm font-bold flex items-center justify-between hover:bg-[#00F2FF]/10 border border-transparent hover:border-[#00F2FF]/50 transition-all uppercase"
                                         >
                                             <div className="flex items-center gap-5">
                                                 <span className="text-[#00F2FF] font-mono text-[10px] opacity-40">#{i+1}</span>
