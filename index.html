@@ -84,7 +84,7 @@
         }
         .btn-cyber-ultimate {
             position: relative;
-        +    overflow: hidden;
+            overflow: hidden;
             background: #00F2FF;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             animation: pulse-cyan 3s infinite ease-in-out;
@@ -94,6 +94,14 @@
             background: #ffffff;
             transform: scale(1.05) translateY(-3px);
             box-shadow: 0 0 60px rgba(0, 242, 255, 0.8);
+        }
+        .btn-wa-cyber {
+            background: #25D366;
+            animation: pulse-wa 3s infinite ease-in-out;
+        }
+        @keyframes pulse-wa {
+            0%, 100% { box-shadow: 0 0 20px rgba(37, 211, 102, 0.4); }
+            50% { box-shadow: 0 0 45px rgba(37, 211, 102, 0.7); }
         }
         .btn-cyber-ultimate .scanner {
             position: absolute;
@@ -114,7 +122,6 @@
 </head>
 <body>
 
-    <!-- NAVBAR -->
     <nav class="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-md border-b border-gray-800">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center gap-3">
@@ -128,12 +135,11 @@
                 <a href="#testimonios" class="hover:text-[#00F2FF] transition">VOCES</a>
             </div>
             <a href="registro.html" class="hidden md:block px-6 py-2 bg-[#00F2FF]/10 border border-[#00F2FF] text-[#00F2FF] font-bold font-orbitron text-sm hover:bg-[#00F2FF] hover:text-black transition shadow-[0_0_15px_rgba(0,242,255,0.3)]">
-                APLICAR AHORA
+                APLICAR AL COMANDO
             </a>
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
     <section id="evento" class="relative min-h-screen flex items-center justify-center pt-32 pb-20 overflow-hidden">
         <div class="absolute inset-0 matrix-bg opacity-20"></div>
         <div class="absolute inset-0 hero-gradient"></div>
@@ -144,7 +150,6 @@
                 CALI • 28 MARZO 2026 • 08:00 AM PUNTUAL
             </div>
 
-            <!-- CRONÓMETRO -->
             <div class="mb-8 font-mono text-sm text-gray-500">
                 <p class="mb-2 text-[#00F2FF] text-xs uppercase tracking-widest">Protocolo de Inicio (Vibe Coding):</p>
                 <div id="countdown" class="countdown-box text-2xl md:text-4xl font-bold text-white tracking-widest">
@@ -153,9 +158,9 @@
             </div>
             
             <div class="flex flex-col md:flex-row items-center justify-center gap-6 mb-8">
-                <h1 class="font-orbitron text-5xl md:text-8xl font-black leading-none tracking-tighter text-center md:text-right">
-                    INMERSIÓN <br/> 
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#00F2FF] to-[#0088FF] neon-text">TÁCTICA</span>
+                <h1 class="font-orbitron text-5xl md:text-8xl font-black leading-none tracking-tighter text-center md:text-right uppercase">
+                    Inmersión <br/> 
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#00F2FF] to-[#0088FF] neon-text">Soberanía</span>
                     <span class="glitch-ia ml-2">IA</span>
                 </h1>
                 <img src="logo_cyberpunk.png" alt="Insignia Cyberpunk" class="w-48 md:w-64 cyber-logo-anim drop-shadow-[0_0_25px_rgba(0,242,255,0.4)]">
@@ -165,58 +170,52 @@
                 <span class="text-[#FFCC00] font-bold">CLUB EXCLUSIVO Y SOBERANO DEL 1%.</span><br/>
                 CIUDADANO AUMENTADO CON IA.<br/>
                 <span class="text-sm md:text-base text-gray-400 mt-4 block italic">
-                    "Por lo que te cuesta una salida a rumbear, una cena o un guayabo,<br/> 
-                    te sumerges en conocimiento y expandes tus horizontes para siempre."
+                    "Únete a la comunidad AprendIA ColombIA y accede al COMANDO SoberanIA.<br/> 
+                    Sin precios públicos, sin fricción, solo valor real para los elegidos."
                 </span>
             </p>
 
             <div class="mb-10 flex flex-col items-center">
-                <div class="bg-black/40 p-6 rounded-2xl border-2 border-[#FFCC00]/50 backdrop-blur-md shadow-[0_0_30px_rgba(255,204,0,0.2)] transform hover:scale-105 transition-all">
-                    <div class="flex flex-col items-center gap-2">
-                        <span class="text-gray-400 font-mono text-lg uppercase tracking-widest">Valor Real</span>
-                        <span class="price-strike font-orbitron text-3xl font-bold">$197 USD</span>
+                <div class="bg-black/60 p-8 rounded-2xl border-2 border-[#00F2FF]/50 backdrop-blur-md shadow-[0_0_40px_rgba(0,242,255,0.2)] transform hover:scale-105 transition-all max-w-xl">
+                    <h3 class="font-orbitron text-[#00F2FF] text-xl font-bold mb-4 uppercase tracking-widest">Estado de Reclutamiento: ABIERTO</h3>
+                    <p class="text-gray-300 text-sm mb-6 leading-relaxed font-mono">
+                        Para conocer los detalles de inversión y asegurar tu cupo en la Inmersión Táctica, debes ingresar al grupo exclusivo de WhatsApp.
+                    </p>
+                    
+                    <div class="flex flex-col gap-4">
+                        <div class="relative group">
+                            <div class="aura-btn"></div>
+                            <a href="registro.html" class="btn-cyber-ultimate px-8 py-5 text-black font-black font-orbitron text-lg rounded-xl flex items-center justify-center gap-4 group">
+                                <div class="scanner"></div>
+                                <i data-lucide="user-plus" class="w-6 h-6"></i>
+                                <span>1. LLENAR REGISTRO TÁCTICO</span>
+                            </a>
+                        </div>
+
+                        <div class="relative group">
+                            <a href="https://chat.whatsapp.com/IE48g9sL3Jm7MFTVDHZTlu" target="_blank" class="btn-wa-cyber px-8 py-5 text-white font-black font-orbitron text-lg rounded-xl flex items-center justify-center gap-4 group hover:bg-white hover:text-[#25D366] transition-all">
+                                <i data-lucide="message-circle" class="w-6 h-6"></i>
+                                <span>2. ENTRAR AL COMANDO SOBERANÍA</span>
+                            </a>
+                        </div>
                     </div>
-                    <div class="mt-4 border-t border-gray-700 pt-4 w-full"></div>
-                    <div class="text-[#00F2FF] font-black font-orbitron text-5xl md:text-6xl animate-pulse mt-2 drop-shadow-[0_0_10px_rgba(0,242,255,0.8)]">
-                        $69 USD
-                    </div>
-                    <div class="text-[#25D366] font-bold font-mono text-xl mt-1">
-                        (Aprox. $250.000 COP)
-                    </div>
+                    <p class="text-[10px] text-gray-500 mt-4 uppercase tracking-tighter">Nota: El ingreso a la comunidad requiere validación de datos previa.</p>
                 </div>
                 
                 <div class="mt-8 grid md:grid-cols-2 gap-4 w-full max-w-2xl">
                     <div class="bg-blue-900/20 border border-blue-500/30 p-4 rounded-lg text-center">
-                        <h4 class="text-blue-400 font-bold font-orbitron">BONO DE ESCUADRÓN</h4>
-                        <p class="text-gray-300 text-xs mt-1">Líder + 5 Colegas (Total 6)</p>
-                        <p class="text-white font-black text-lg">LÍDER PAGA EL 50%</p>
-                        <p class="text-xs text-gray-400 italic mt-1">"Solo el líder recibe el descuento"</p>
+                        <h4 class="text-blue-400 font-bold font-orbitron">ACCESO PRIVADO</h4>
+                        <p class="text-gray-300 text-xs mt-1">Contenido exclusivo en WA</p>
                     </div>
                     <div class="bg-[#FFCC00]/20 border border-[#FFCC00]/30 p-4 rounded-lg text-center relative overflow-hidden">
-                        <div class="absolute -right-4 -top-4 bg-[#FFCC00] text-black text-[10px] font-bold px-6 py-1 rotate-45">INMUNIDAD</div>
                         <h4 class="text-[#FFCC00] font-bold font-orbitron">SOBERANÍA TOTAL</h4>
-                        <p class="text-gray-300 text-xs mt-1">Líder + 9 Colegas (Total 10)</p>
-                        <p class="text-white font-black text-lg">LÍDER ENTRA GRATIS</p>
+                        <p class="text-gray-300 text-xs mt-1">IA • Biohacking • Finanzas</p>
                     </div>
-                </div>
-
-            </div>
-            
-            <!-- BOTÓN MEJORADO (SOLO CAMBIO AQUÍ) -->
-            <div class="flex flex-col md:flex-row gap-6 justify-center items-center">
-                <div class="relative group">
-                    <div class="aura-btn"></div>
-                    <a href="registro.html" class="btn-cyber-ultimate px-12 py-7 text-black font-black font-orbitron text-xl md:text-2xl rounded-xl flex items-center justify-center gap-4 group">
-                        <div class="scanner"></div>
-                        <i data-lucide="crosshair" class="w-8 h-8 md:w-9 md:h-9 group-hover:rotate-90 transition-transform duration-500"></i>
-                        <span>¡SÍ, QUIERO MI ACCESO A LA ERA IA desde YA!</span>
-                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- BIO / AUTORIDAD -->
     <section id="bio" class="py-20 bg-[#080808] border-t border-gray-900">
         <div class="max-w-5xl mx-auto px-6">
             <div class="flex flex-col md:flex-row gap-12 items-center">
@@ -250,7 +249,6 @@
         </div>
     </section>
 
-    <!-- AGENDA TÁCTICA -->
     <section id="agenda" class="py-20 bg-black border-y border-gray-900">
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-16">
@@ -263,28 +261,28 @@
                     <div class="text-[#00F2FF] font-black text-2xl font-orbitron">01</div>
                     <div>
                         <h3 class="text-xl font-bold text-white mb-2 font-orbitron">OPERACIÓN "CLONACIÓN"</h3>
-                        <p class="text-gray-400 text-sm">Entrenarás a tu IA con tu <strong class=text-[#00F2FF]">TONO Y REDACCIÓN</strong> exactos. Tu gemelo digital responderá por ti.</p>
+                        <p class="text-gray-400 text-sm">Entrenarás a tu IA con tu <strong class=text-[#00F2FF]>TONO Y REDACCIÓN</strong> exactos. Tu gemelo digital responderá por ti.</p>
                     </div>
                 </div>
                 <div class="flex gap-4 p-6 bg-gray-900/50 rounded-xl border-l-4 border-[#FF00FF] hover:bg-gray-800 transition">
                     <div class="text-[#FF00FF] font-black text-2xl font-orbitron">02</div>
                     <div>
                         <h3 class="text-xl font-bold text-white mb-2 font-orbitron">LENGUAJE SOBERANO</h3>
-                        <p class="text-gray-400 text-sm">Olvídate de "pedir prompts". Aprende el <strong class="text-[#FF00FF]">Lenguaje Natural</strong> para darle órdenes precisas a la máquina. Crearás tus propios comandos infinitos.</p>
+                        <p class="text-gray-400 text-sm">Olvídate de "pedir prompts". Aprende el <strong class="text-[#FF00FF]">Lenguaje Natural</strong> para darle órdenes precisas a la máquina.</p>
                     </div>
                 </div>
                 <div class="flex gap-4 p-6 bg-gray-900/50 rounded-xl border-l-4 border-[#FFCC00] hover:bg-gray-800 transition">
                     <div class="text-[#FFCC00] font-black text-2xl font-orbitron">03</div>
                     <div>
                         <h3 class="text-xl font-bold text-white mb-2 font-orbitron">PROTOCOLO C.I.A.</h3>
-                        <p class="text-gray-400 text-sm"><strong class="text-[#FFCC00]">"Central de Inteligencia Acelerada"</strong>. Interroga documentos como un agente federal. Resúmenes y audios al instante.</p>
+                        <p class="text-gray-400 text-sm"><strong class="text-[#FFCC00]">"Central de Inteligencia Acelerada"</strong>. Interroga documentos como un agente federal.</p>
                     </div>
                 </div>
                 <div class="flex gap-4 p-6 bg-gray-900/50 rounded-xl border-l-4 border-[#25D366] hover:bg-gray-800 transition">
                     <div class="text-[#25D366] font-black text-2xl font-orbitron">04</div>
                     <div>
                         <h3 class="text-xl font-bold text-white mb-2 font-orbitron">VIBE CODING</h3>
-                        <p class="text-gray-400 text-sm"><strong class="text-[#25D366]">NO CODE / LOW CODE.</strong> Usaremos Google AI Studio. Crea Apps web sin saber programar, solo vibrando con la IA.</p>
+                        <p class="text-gray-400 text-sm"><strong class="text-[#25D366]">NO CODE / LOW CODE.</strong> Usaremos Google AI Studio. Crea Apps web sin saber programar.</p>
                     </div>
                 </div>
                 <div class="flex gap-4 p-6 bg-gray-900/50 rounded-xl border-l-4 border-white md:col-span-2 hover:bg-gray-800 transition items-center justify-center text-center md:text-left">
@@ -298,7 +296,6 @@
         </div>
     </section>
 
-    <!-- TESTIMONIOS -->
     <section id="testimonios" class="py-20 bg-[#080808]">
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-12">
@@ -306,11 +303,10 @@
                 <p class="text-gray-400">Resultados reales. Sin filtros.</p>
             </div>
             <div class="grid md:grid-cols-2 gap-6">
-                <!-- Testimonio 1 -->
                 <div class="bg-gray-900/50 border border-gray-800 p-6 rounded-xl relative">
                     <div class="text-[#FFCC00] text-4xl font-serif absolute top-4 left-4 opacity-20">"</div>
                     <p class="text-gray-300 text-sm italic mb-4 relative z-10">
-                        "Aprender a usar NotebookLM para la universidad me cambió la vida. Ahora subo mis apuntes, la IA me simula exámenes completos y aprendo muchísimo más rápido."
+                        "Aprender a usar NotebookLM para la universidad me cambió la vida. Ahora subo mis apuntes, la IA me simula exámenes completos."
                     </p>
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center font-bold text-[#00F2FF]">M</div>
@@ -320,11 +316,10 @@
                         </div>
                     </div>
                 </div>
-                <!-- Testimonio 2 -->
                 <div class="bg-gray-900/50 border border-gray-800 p-6 rounded-xl relative">
                     <div class="text-[#FFCC00] text-4xl font-serif absolute top-4 left-4 opacity-20">"</div>
                     <p class="text-gray-300 text-sm italic mb-4 relative z-10">
-                        "Logré crear una app web sin saber una sola línea de código. Además, ahora le hago los Ebooks aplicando la metodología enseñada, afinándola y personalizándola a mi estilo."
+                        "Logré crear una app web sin saber una sola línea de código. Además, ahora le hago los Ebooks aplicando la metodología enseñada."
                     </p>
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center font-bold text-[#FF00FF]">D</div>
@@ -334,39 +329,10 @@
                         </div>
                     </div>
                 </div>
-                <!-- Testimonio 3 -->
-                <div class="bg-gray-900/50 border border-gray-800 p-6 rounded-xl relative">
-                    <div class="text-[#FFCC00] text-4xl font-serif absolute top-4 left-4 opacity-20">"</div>
-                    <p class="text-gray-300 text-sm italic mb-4 relative z-10">
-                        "Empecé aprendiendo a crear prompts para mis imágenes, y ya itero sola para crear una app que me hable y me cree las imágenes con lo que yo le diga. ¡Es increíble!"
-                    </p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center font-bold text-[#FFCC00]">C</div>
-                        <div>
-                            <p class="text-white font-bold text-sm">Doña Carmen</p>
-                            <p class="text-gray-500 text-xs">Emprendedora</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Testimonio 4 -->
-                <div class="bg-gray-900/50 border border-gray-800 p-6 rounded-xl relative">
-                    <div class="text-[#FFCC00] text-4xl font-serif absolute top-4 left-4 opacity-20">"</div>
-                    <p class="text-gray-300 text-sm italic mb-4 relative z-10">
-                        "Soy creadora de contenido y me tomaba horas producir. Ahora creo podcasts automáticos completos con IA gracias a lo que aprendí en AprendIA con Giranel."
-                    </p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center font-bold text-[#25D366]">V</div>
-                        <div>
-                            <p class="text-white font-bold text-sm">Valentina G.</p>
-                            <p class="text-gray-500 text-xs">Creadora de Contenido</p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- REQUISITOS & LOGÍSTICA (RECUPERADOS) -->
     <section id="requisitos" class="py-20 bg-[#080808] border-t border-gray-900">
         <div class="max-w-5xl mx-auto px-6">
             <div class="text-center mb-12">
@@ -381,71 +347,60 @@
                 </div>
             </div>
             <div class="grid md:grid-cols-2 gap-8 mb-12">
-                <!-- SUMINISTROS -->
                 <div class="bg-[#00F2FF]/5 border border-[#00F2FF]/30 p-8 rounded-xl text-center">
                     <i data-lucide="coffee" class="w-12 h-12 text-[#00F2FF] mx-auto mb-4"></i>
                     <h3 class="font-orbitron text-xl text-white mb-2">SUMINISTROS (INCLUIDO)</h3>
-                    <p class="text-gray-300 font-bold mb-2">COWORKING GASTRONÓMICO</p>
                     <ul class="text-gray-400 text-sm space-y-2">
                         <li>✅ Almuerzo Ejecutivo</li>
                         <li>✅ Refrigerios Tácticos</li>
-                        <li>✅ Café y Agua Ilimitados</li>
                         <li>✅ Aire Acondicionado</li>
                     </ul>
                 </div>
-                <!-- ARMAMENTO -->
                 <div class="bg-[#FFCC00]/5 border border-[#FFCC00]/30 p-8 rounded-xl text-center">
                     <i data-lucide="laptop" class="w-12 h-12 text-[#FFCC00] mx-auto mb-4"></i>
-                    <h3 class="font-orbitron text-xl text-white mb-2">TU ARMAMENTO (OBLIGATORIO)</h3>
+                    <h3 class="font-orbitron text-xl text-white mb-2">TU ARMAMENTO</h3>
                     <ul class="text-gray-400 text-sm space-y-3 text-left pl-4 list-disc">
-                        <li><strong>Laptop (PC/Mac) + Celular.</strong></li>
-                        <li><strong>DATOS MÓVILES PROPIOS:</strong> No daremos Wi-Fi. La soberanía depende de tu conexión.</li>
-                        <li><strong>Cuentas Listas:</strong> Gmail (Google), OpenAI (ChatGPT), Gemini (Google AI Studio).</li>
-                        <li><strong>Parqueo:</strong> Recomendamos Uber/Taxi o parqueadero del Éxito San Fernando.</li>
-                        <li><strong>PUNTUALIDAD:</strong> Iniciamos 8:00 AM. <span class="text-red-500 font-bold">Llegar 7:55 AM ya es tarde.</span></li>
+                        <li>Laptop + Celular.</li>
+                        <li><strong>DATOS MÓVILES PROPIOS.</strong></li>
+                        <li>Cuentas: Gmail, OpenAI, Gemini.</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- LA BÓVEDA ANCESTRAL -->
     <section id="boveda" class="py-24 bg-[#0a0a0a] border-t border-gray-900">
         <div class="max-w-7xl mx-auto px-6 text-center">
             <h2 class="font-orbitron text-4xl font-bold mb-16">LA BÓVEDA <span class="text-[#FFCC00]">ANCESTRAL</span></h2>
             <div class="grid md:grid-cols-3 gap-8 text-left">
-                <!-- Tarjeta 1 -->
-                <div class="bg-black border border-gray-800 p-8 rounded-2xl card-hover transition-all group flex flex-col h-full">
+                <div class="bg-black border border-gray-800 p-8 rounded-2xl card-hover transition-all flex flex-col h-full">
                     <h3 class="font-orbitron text-2xl text-white mb-2">PROTOCOLOS ANCESTRALES</h3>
                     <p class="text-gray-500 text-sm mb-4 font-mono">SALUD / REMEDIOS</p>
-                    <p class="text-gray-400 text-sm mb-8 flex-grow">Desbloquea el recetario prohibido para hackear tu biología. Suplementación y remedios naturales.</p>
-                    <a href="https://protocolo.aprendia.net" target="_blank" class="py-3 text-center border border-green-500 text-green-500 font-bold hover:bg-green-500 hover:text-black transition rounded">ACCEDER AHORA</a>
+                    <p class="text-gray-400 text-sm mb-8 flex-grow">Desbloquea el recetario prohibido para hackear tu biología.</p>
+                    <a href="https://protocolo.aprendia.net" target="_blank" class="py-3 text-center border border-green-500 text-green-500 font-bold hover:bg-green-500 hover:text-black transition rounded">ACCEDER</a>
                 </div>
-                <!-- Tarjeta 2 -->
-                <div class="bg-black border border-gray-800 p-8 rounded-2xl card-hover transition-all group flex flex-col h-full">
+                <div class="bg-black border border-gray-800 p-8 rounded-2xl card-hover transition-all flex flex-col h-full">
                     <h3 class="font-orbitron text-2xl text-white mb-2">P.A.P.</h3>
                     <p class="text-gray-500 text-sm mb-4 font-mono uppercase">Primeros Auxilios Psicológicos</p>
-                    <p class="text-gray-400 text-sm mb-8 flex-grow">Protocolo de choque para momentos de crisis y reinicio del sistema nervioso bajo presión.</p>
-                    <a href="https://pap.aprendia.net" target="_blank" class="py-3 text-center border border-[#FFCC00] text-[#FFCC00] font-bold hover:bg-[#FFCC00] hover:text-black transition rounded">VER PROTOCOLO</a>
+                    <p class="text-gray-400 text-sm mb-8 flex-grow">Protocolo de choque para momentos de crisis.</p>
+                    <a href="https://pap.aprendia.net" target="_blank" class="py-3 text-center border border-[#FFCC00] text-[#FFCC00] font-bold hover:bg-[#FFCC00] hover:text-black transition rounded">VER</a>
                 </div>
-                <!-- Tarjeta 3 -->
-                <div class="bg-black border border-gray-800 p-8 rounded-2xl card-hover transition-all group flex flex-col h-full">
+                <div class="bg-black border border-gray-800 p-8 rounded-2xl card-hover transition-all flex flex-col h-full">
                     <h3 class="font-orbitron text-2xl text-white mb-2">GYM MENTAL</h3>
-                    <p class="text-gray-500 text-sm mb-4 font-mono">ENTRENAMIENTO PARA RIQUEZA</p>
-                    <p class="text-gray-400 text-sm mb-8 flex-grow">Ejercicios diarios de reprogramación neuronal. Expande tu termostato financiero.</p>
-                    <a href="https://gym.aprendia.net" target="_blank" class="py-3 text-center border border-purple-500 text-purple-500 font-bold hover:bg-purple-500 hover:text-black transition rounded">INICIAR ENTRENO</a>
+                    <p class="text-gray-500 text-sm mb-4 font-mono">ENTRENAMIENTO RIQUEZA</p>
+                    <p class="text-gray-400 text-sm mb-8 flex-grow">Ejercicios de reprogramación neuronal.</p>
+                    <a href="https://gym.aprendia.net" target="_blank" class="py-3 text-center border border-purple-500 text-purple-500 font-bold hover:bg-purple-500 hover:text-black transition rounded">INICIAR</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER (RECUPERADO LOGO GRIS) -->
     <footer class="bg-black py-12 border-t border-gray-900 text-center">
         <div class="flex justify-center items-center gap-3 mb-4">
-            <img src="logo.png" class="w-20 h-20 rounded-full grayscale opacity-50" alt="Logo" onerror="this.style.display='none'">
+            <img src="logo.png" class="w-20 h-20 rounded-full grayscale opacity-50" alt="Logo">
             <div class="font-orbitron text-xl font-bold tracking-tighter text-gray-600">APREND<span class="text-gray-400">IA</span></div>
         </div>
-        <p class="text-gray-600 text-sm font-mono mb-6">© 2026 COMANDO SOBERANÍA. CALI, COLOMBIA.</p>
+        <p class="text-gray-600 text-sm font-mono mb-6 uppercase">© 2026 COMANDO SOBERANÍA • APRENDIA COLOMBIA</p>
     </footer>
 
     <script>
@@ -468,8 +423,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
